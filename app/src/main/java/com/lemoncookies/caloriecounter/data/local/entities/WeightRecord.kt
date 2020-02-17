@@ -6,18 +6,15 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.lemoncookies.caloriecounter.data.local.utils.Converters
 
-@Entity(tableName = "calorie_table")
+@Entity(tableName = "weight_table")
 @TypeConverters(Converters::class)
-data class CalorieRecord(
+data class WeightRecord(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     var id: Int,
 
-    @ColumnInfo(name = "name")
-    var name: String,
-
     @ColumnInfo(name = "calories")
-    var calories: Int,
+    var weight: Int,
 
     @ColumnInfo(name = "date")
     var date: Long

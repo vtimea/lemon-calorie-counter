@@ -27,5 +27,4 @@ interface CalorieDao {
 
     @Query("SELECT * FROM calorie_table WHERE id==id")
     fun getById(id: Int): CalorieRecord
-
 }
