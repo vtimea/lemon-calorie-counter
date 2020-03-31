@@ -8,6 +8,7 @@ import com.lemoncookies.caloriecounter.data.local.dao.CalorieDao
 import com.lemoncookies.caloriecounter.data.local.dao.WeightDao
 import com.lemoncookies.caloriecounter.data.local.entities.CalorieRecord
 import com.lemoncookies.caloriecounter.data.local.entities.WeightRecord
+import com.lemoncookies.caloriecounter.data.local.utils.Constants.LOCAL_DB_NAME
 
 @Database(entities = [CalorieRecord::class, WeightRecord::class], version = 1, exportSchema = false)
 abstract class LocalDatabase : RoomDatabase() {
@@ -26,7 +27,7 @@ abstract class LocalDatabase : RoomDatabase() {
                     if (INSTANCE == null) {
                         INSTANCE = Room.databaseBuilder(
                             context.applicationContext,
-                            LocalDatabase::class.java, "local_database"
+                            LocalDatabase::class.java, LOCAL_DB_NAME
                         )
                             .build()
                     }

@@ -24,17 +24,17 @@ class CalorieRepository(application: Application) : CoroutineScope {
 
     fun getRecords() = calorieDao?.getAll()
 
-    fun addRecord(record: CalorieRecord) {
-        launch {
-            withContext(Dispatchers.IO) {
+    suspend fun addRecord(record: CalorieRecord) {
+        withContext(Dispatchers.IO) {
+            launch {
                 calorieDao?.addRecord(record)
             }
         }
     }
 
-    fun removeRecord(record: CalorieRecord) {
-        launch {
-            withContext(Dispatchers.IO) {
+    suspend fun removeRecord(record: CalorieRecord) {
+        withContext(Dispatchers.IO) {
+            launch {
                 calorieDao?.removeRecord(record)
             }
         }

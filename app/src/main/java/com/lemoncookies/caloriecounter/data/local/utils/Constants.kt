@@ -1,0 +1,18 @@
+package com.lemoncookies.caloriecounter.data.local.utils
+
+object Constants {
+    const val LOCAL_DB_NAME = "local_database"
+
+    //  Calories table
+    const val TABLE_CALORIES = "calories_table"
+    const val CALORIES_ID = "id"
+    const val CALORIES_NAME = "name"
+    const val CALORIES_VALUE = "calories"
+    const val CALORIES_DATE = "date"
+
+    //  Weight table
+    const val TABLE_WEIGHT = "weight_table"
+    const val WEIGHT_ID = "id"
+    const val WEIGHT_VALUE = "calories"
+    const val WEIGHT_DATE = "date"
+}

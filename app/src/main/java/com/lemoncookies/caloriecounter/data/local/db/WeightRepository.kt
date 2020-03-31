@@ -24,17 +24,17 @@ class WeightRepository(application: Application) : CoroutineScope {
 
     fun getRecords() = weightDao?.getAll()
 
-    fun addRecord(record: WeightRecord) {
-        launch {
-            withContext(Dispatchers.IO) {
+    suspend fun addRecord(record: WeightRecord) {
+        withContext(Dispatchers.IO) {
+            launch {
                 weightDao?.addRecord(record)
             }
         }
     }
 
-    fun removeRecord(record: WeightRecord) {
-        launch {
-            withContext(Dispatchers.IO) {
+    suspend fun removeRecord(record: WeightRecord) {
+        withContext(Dispatchers.IO) {
+            launch {
                 weightDao?.removeRecord(record)
             }
         }
