@@ -49,5 +49,5 @@ class WeightRepository(application: Application) : CoroutineScope {
     fun getBetweenDates(startDate: DateTime, endDate: DateTime) =
         weightDao?.getBetweenDates(startDate, endDate) ?: listOf()
 
-    fun getById(id: Int) = weightDao?.getById(id)
+    fun getById(id: Long) = weightDao?.getById(id)
 }
