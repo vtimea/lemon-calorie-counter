@@ -22,11 +22,11 @@ abstract class LocalDatabase : RoomDatabase() {
     companion object {
         @Volatile
         private var INSTANCE: LocalDatabase? = null
-        var TEST_MODE = true
+        var TEST_MODE = false
 
         fun getDatabase(context: Context): LocalDatabase? {
             if (INSTANCE == null) {
-                synchronized(LocalDatabase::class.java) {
+                synchronized(this) {
                     if (INSTANCE == null) {
                         if (TEST_MODE) {
                             INSTANCE =

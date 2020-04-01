@@ -26,13 +26,19 @@ class CalorieRepository(application: Application) : CoroutineScope {
 
     fun addRecord(record: CalorieRecord) {
         launch {
-            calorieDao?.addRecord(record)
+            addRecordBG(record)
         }
     }
 
     fun removeRecord(record: CalorieRecord) {
         launch {
-            calorieDao?.removeRecord(record)
+            removeRecordBG(record)
+        }
+    }
+
+    fun removeRecord(id: Long) {
+        launch {
+            removeRecordBG(id)
         }
     }
 
@@ -49,6 +55,10 @@ class CalorieRepository(application: Application) : CoroutineScope {
 
     fun getById(id: Long) = calorieDao?.getById(id)
 
+    fun clearData() {
+        calorieDao?.clearData()
+    }
+
     private suspend fun addRecordBG(record: CalorieRecord) {
         withContext(Dispatchers.IO) {
             launch {
@@ -61,6 +71,14 @@ class CalorieRepository(application: Application) : CoroutineScope {
         withContext(Dispatchers.IO) {
             launch {
                 calorieDao?.removeRecord(record)
+            }
+        }
+    }
+
+    private suspend fun removeRecordBG(id: Long) {
+        withContext(Dispatchers.IO) {
+            launch {
+                calorieDao?.removeRecord(id)
             }
         }
     }

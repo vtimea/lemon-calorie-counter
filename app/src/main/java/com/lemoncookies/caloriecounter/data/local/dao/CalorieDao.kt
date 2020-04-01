@@ -17,6 +17,9 @@ interface CalorieDao {
     @Delete
     fun removeRecord(record: CalorieRecord)
 
+    @Query("DELETE FROM $TABLE_CALORIES WHERE id=:id")
+    fun removeRecord(id: Long)
+
     @Query("SELECT * FROM $TABLE_CALORIES")
     fun getAll(): List<CalorieRecord>
 
@@ -31,4 +34,7 @@ interface CalorieDao {
 
     @Query("SELECT * FROM $TABLE_CALORIES WHERE $CALORIES_ID==:id")
     fun getById(id: Long): CalorieRecord
+
+    @Query("DELETE FROM $TABLE_CALORIES")
+    fun clearData()
 }

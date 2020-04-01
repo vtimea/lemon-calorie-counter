@@ -23,4 +23,14 @@ data class CalorieRecord(
 
     @ColumnInfo(name = CALORIES_DATE)
     var date: Long = 0
-)
+) {
+    override fun equals(other: Any?): Boolean {
+        if (other !is CalorieRecord) {
+            return false
+        }
+        if (other.id == id && other.name == name && other.calories == calories && other.date == date) {
+            return true
+        }
+        return false
+    }
+}
