@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Lemon Calorie Counter</string>
+
+    <string name="menu_title_calories">Calories</string>
+    <string name="menu_title_graphs">Graphs</string>
+    <string name="menu_title_profile">Profile</string>
 </resources>
