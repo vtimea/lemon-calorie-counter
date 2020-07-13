@@ -1,4 +1,4 @@
-package com.lemoncookies.caloriecounter.base
+package com.lemoncookies.caloriecounter.ui.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
