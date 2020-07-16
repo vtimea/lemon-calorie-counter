@@ -1,5 +1,6 @@
 package com.lemoncookies.caloriecounter.data.local.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.lemoncookies.caloriecounter.data.local.entities.CalorieRecord
 import com.lemoncookies.caloriecounter.data.local.utils.Constants.CALORIES_DATE
@@ -21,13 +22,13 @@ interface CalorieDao {
     fun removeRecord(id: Long)
 
     @Query("SELECT * FROM $TABLE_CALORIES")
-    fun getAll(): List<CalorieRecord>
+    fun getAll(): LiveData<List<CalorieRecord>>
 
     @Query("SELECT * FROM $TABLE_CALORIES WHERE $CALORIES_NAME LIKE '%' || :name || '%'")
     fun getByName(name: String): List<CalorieRecord>
 
     @Query("SELECT * FROM $TABLE_CALORIES WHERE $CALORIES_DATE BETWEEN :dayStart AND :dayEnd")
-    fun getByDate(dayStart: DateTime, dayEnd: DateTime): List<CalorieRecord>
+    fun getByDate(dayStart: DateTime, dayEnd: DateTime): LiveData<List<CalorieRecord>>
 
     @Query("SELECT * FROM $TABLE_CALORIES WHERE $CALORIES_DATE BETWEEN :fromDate AND :toDate")
     fun getBetweenDates(fromDate: DateTime, toDate: DateTime): List<CalorieRecord>

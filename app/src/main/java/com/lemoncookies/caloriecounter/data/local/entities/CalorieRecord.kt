@@ -19,7 +19,7 @@ data class CalorieRecord(
     var name: String = "",
 
     @ColumnInfo(name = CALORIES_VALUE)
-    var calories: Float = 0f,
+    var calories: Int = 0,
 
     @ColumnInfo(name = CALORIES_DATE)
     var date: Long = 0
@@ -32,5 +32,13 @@ data class CalorieRecord(
             return true
         }
         return false
+    }
+
+    override fun hashCode(): Int {
+        var result = id.hashCode()
+        result = 31 * result + name.hashCode()
+        result = 31 * result + calories
+        result = 31 * result + date.hashCode()
+        return result
     }
 }
