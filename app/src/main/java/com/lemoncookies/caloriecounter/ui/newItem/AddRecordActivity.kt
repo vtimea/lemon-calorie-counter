@@ -3,9 +3,7 @@ package com.lemoncookies.caloriecounter.ui.newItem
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.lemoncookies.caloriecounter.databinding.ActivityAddRecordBinding
-import kotlinx.coroutines.launch
 
 class AddRecordActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddRecordBinding
@@ -23,9 +21,7 @@ class AddRecordActivity : AppCompatActivity() {
         binding.btnAdd.setOnClickListener {
             val name = binding.etName.text.toString()
             val value = binding.etValue.text.toString().toInt()
-            lifecycleScope.launch {
-                viewModel.saveRecord(name, value)
-            }
+            viewModel.saveRecord(name, value)
             finish()
         }
     }
