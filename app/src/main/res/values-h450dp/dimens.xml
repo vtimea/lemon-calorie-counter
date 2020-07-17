@@ -10,4 +10,10 @@
     <dimen name="default_margin">9dp</dimen>
     <dimen name="margin_small">3dp</dimen>
     <dimen name="margin_medium">6dp</dimen>
+    <dimen name="margin_large">12dp</dimen>
+
+    <dimen name="card_corner_radius">3dp</dimen>
+    <dimen name="radius_date">6dp</dimen>
+
+    <dimen name="date_item_width">48dp</dimen>
 </resources>

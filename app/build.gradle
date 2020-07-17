@@ -74,6 +74,7 @@ dependencies {
     androidTestImplementation "androidx.test:core:$rootProject.coreTestingVersion"
     androidTestImplementation "androidx.test:runner:$rootProject.coreTestingVersion"
     androidTestImplementation "androidx.test:rules:$rootProject.coreTestingVersion"
+    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
 
     // Espresso dependencies
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

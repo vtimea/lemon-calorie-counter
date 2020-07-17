@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#9C27B0</color>
-    <color name="colorPrimaryDark">#673AB7</color>
-    <color name="colorAccent">#9C27B0</color>
+    <color name="colorPrimary">#6847DD</color>
+    <color name="colorPrimaryDark">#4B4453</color>
+    <color name="colorAccent">#00C0A3</color>
 
     <color name="colorActiveTab">@color/colorPrimary</color>
-    <color name="colorInactiveTab">#B7C5B7</color>
+    <color name="colorInactiveTab">#C6C6C6</color>
+
+    <color name="textPrimary">#000000</color>
+    <color name="textSecondary">#6C6C6C</color>
+
+    <color name="colorSelectedDate">@color/colorPrimary</color>
+    <color name="colorUnselectedDate">#ECECEC</color>
+    <color name="colorSelectedDateText">@android:color/white</color>
+    <color name="colorUnselectedDateText">#676567</color>
 </resources>

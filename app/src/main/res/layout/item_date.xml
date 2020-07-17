@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.lemoncookies.caloriecounter.views.DateView
+        android:id="@+id/dateView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:selectedBackgroundColor="@color/colorSelectedDate"
+        app:selectedTextColor="@color/colorSelectedDateText"
+        app:unselectedBackgroundColor="@color/colorUnselectedDate"
+        app:unselectedTextColor="@color/colorUnselectedDateText" />
+
+</FrameLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DateView">
+        <attr name="selectedBackgroundColor" format="color|reference" />
+        <attr name="unselectedBackgroundColor" format="color|reference" />
+        <attr name="selectedTextColor" format="color|reference" />
+        <attr name="unselectedTextColor" format="color|reference" />
+    </declare-styleable>
+</resources>

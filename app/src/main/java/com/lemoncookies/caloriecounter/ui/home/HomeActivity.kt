@@ -31,6 +31,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+        binding.pager.isUserInputEnabled = false
         binding.pager.adapter = FadingPagerAdapter(supportFragmentManager, lifecycle)
         binding.pager.setPageTransformer { page, position ->
             page.alpha = 0f

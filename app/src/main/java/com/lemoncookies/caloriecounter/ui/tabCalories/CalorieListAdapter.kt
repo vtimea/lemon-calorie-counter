@@ -21,7 +21,7 @@ class CalorieListAdapter(items: List<CalorieRecord>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalorieItem {
         val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.row_calorie_record, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_calorie_record, parent, false)
         return CalorieItem(itemView)
     }
 
