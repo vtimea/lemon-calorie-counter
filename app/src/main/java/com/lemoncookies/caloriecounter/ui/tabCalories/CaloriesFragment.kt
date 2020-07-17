@@ -59,8 +59,13 @@ class CaloriesFragment : BaseFragment() {
         )
         rvDates.adapter = object : DatesAdapter(dates, 1) {
             override fun onDateSelected(date: DateTime) {
-                Toast.makeText(requireContext(), date.toString(), Toast.LENGTH_SHORT).show()
+                onDatePicked(date)
             }
         }
+    }
+
+    private fun onDatePicked(date: DateTime) {
+        viewModel.onDateSelected(date)
+        Toast.makeText(requireContext(), date.toString(), Toast.LENGTH_SHORT).show()
     }
 }

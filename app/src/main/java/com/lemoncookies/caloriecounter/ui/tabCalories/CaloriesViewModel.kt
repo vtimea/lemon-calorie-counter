@@ -27,4 +27,9 @@ class CaloriesViewModel @ViewModelInject constructor(application: Application) :
         }
         sum
     }
+
+
+    fun onDateSelected(date: DateTime) {
+        selectedDate.postValue(date)
+    }
 }
