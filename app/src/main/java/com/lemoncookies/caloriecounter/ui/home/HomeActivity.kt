@@ -1,4 +1,4 @@
-package com.lemoncookies.caloriecounter.ui.main
+package com.lemoncookies.caloriecounter.ui.home
 
 import android.content.Intent
 import android.os.Bundle
@@ -91,7 +91,12 @@ class HomeActivity : AppCompatActivity() {
         } else {
             View.GONE
         }
-        binding.fabAdd.visibility = visibility
+        if (visibility == binding.fabAdd.visibility) return
+        if (visible) {
+            binding.fabAdd.show()
+        } else {
+            binding.fabAdd.hide()
+        }
     }
 
     private fun onAddButtonPressed(tab: Int) {

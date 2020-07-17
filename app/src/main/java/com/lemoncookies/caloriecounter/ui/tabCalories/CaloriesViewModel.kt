@@ -27,5 +27,4 @@ class CaloriesViewModel @ViewModelInject constructor(application: Application) :
         }
         sum
     }
-
 }

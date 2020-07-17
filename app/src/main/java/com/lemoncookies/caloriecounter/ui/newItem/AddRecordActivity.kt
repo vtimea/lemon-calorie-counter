@@ -17,7 +17,7 @@ class AddRecordActivity : AppCompatActivity() {
         initView()
     }
 
-    fun initView() {
+    private fun initView() {
         binding.btnAdd.setOnClickListener {
             val name = binding.etName.text.toString()
             val value = binding.etValue.text.toString().toInt()

@@ -6,8 +6,8 @@ import com.lemoncookies.caloriecounter.data.local.dao.CalorieDao
 import com.lemoncookies.caloriecounter.data.local.entities.CalorieRecord
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.joda.time.DateTime
 import kotlin.coroutines.CoroutineContext
 
@@ -26,20 +26,14 @@ class CalorieRepository(application: Application) : CoroutineScope {
     fun getRecords() = calorieDao.getAll()
 
     fun addRecord(record: CalorieRecord) {
-        launch {
-            addRecordBG(record)
-        }
-    }
-
-    fun removeRecord(record: CalorieRecord) {
-        launch {
-            removeRecordBG(record)
+        launch(Dispatchers.IO) {
+            calorieDao.addRecord(record)
         }
     }
 
     fun removeRecord(id: Long) {
-        launch {
-            removeRecordBG(id)
+        GlobalScope.launch(Dispatchers.IO) {
+            calorieDao.removeRecord(id)
         }
     }
 
@@ -58,29 +52,5 @@ class CalorieRepository(application: Application) : CoroutineScope {
 
     fun clearData() {
         calorieDao.clearData()
-    }
-
-    private suspend fun addRecordBG(record: CalorieRecord) {
-        withContext(Dispatchers.IO) {
-            launch {
-                calorieDao.addRecord(record)
-            }
-        }
-    }
-
-    private suspend fun removeRecordBG(record: CalorieRecord) {
-        withContext(Dispatchers.IO) {
-            launch {
-                calorieDao.removeRecord(record)
-            }
-        }
-    }
-
-    private suspend fun removeRecordBG(id: Long) {
-        withContext(Dispatchers.IO) {
-            launch {
-                calorieDao.removeRecord(id)
-            }
-        }
     }
 }
