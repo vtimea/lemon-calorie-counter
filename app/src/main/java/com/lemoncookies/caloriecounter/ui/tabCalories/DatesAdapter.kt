@@ -37,10 +37,10 @@ abstract class DatesAdapter(private val dates: List<DateTime>, selectedPos: Int)
                 val indexOfLast = dates.indexOf(selectedDate)
                 val indexCurrent = dates.indexOf(date)
                 selectedDate = date
-                if (indexOfLast > 0) {
+                if (indexOfLast >= 0) {
                     notifyItemChanged(indexOfLast)
                 }
-                if (indexCurrent > 0) {
+                if (indexCurrent >= 0) {
                     notifyItemChanged(indexCurrent)
                 }
             }
