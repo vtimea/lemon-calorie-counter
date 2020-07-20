@@ -5,9 +5,9 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.lemoncookies.caloriecounter.R
 
-class ProfileFragment : PreferenceFragmentCompat() {
+class SettingsFragment : PreferenceFragmentCompat() {
     companion object {
-        fun newInstance() = ProfileFragment()
+        fun newInstance() = SettingsFragment()
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {

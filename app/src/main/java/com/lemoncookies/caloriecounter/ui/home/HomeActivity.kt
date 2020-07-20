@@ -15,7 +15,7 @@ import com.lemoncookies.caloriecounter.databinding.ActivityHomeBinding
 import com.lemoncookies.caloriecounter.ui.newItem.AddRecordActivity
 import com.lemoncookies.caloriecounter.ui.tabCalories.CaloriesFragment
 import com.lemoncookies.caloriecounter.ui.tabGraphs.GraphsFragment
-import com.lemoncookies.caloriecounter.ui.tabSettings.ProfileFragment
+import com.lemoncookies.caloriecounter.ui.tabSettings.SettingsFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -76,7 +76,7 @@ class HomeActivity : AppCompatActivity() {
         val fragments = listOf(
             CaloriesFragment.newInstance(),
             GraphsFragment.newInstance(),
-            ProfileFragment.newInstance()
+            SettingsFragment.newInstance()
         )
 
         override fun getItemCount(): Int {
