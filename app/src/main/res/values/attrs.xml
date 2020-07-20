@@ -6,4 +6,9 @@
         <attr name="selectedTextColor" format="color|reference" />
         <attr name="unselectedTextColor" format="color|reference" />
     </declare-styleable>
+    <declare-styleable name="EdittextCheckboxPrefrence">
+        <attr name="checkboxTitle" format="string" />
+        <attr name="title" format="string" />
+        <attr name="value" format="integer" />
+    </declare-styleable>
 </resources>

@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:icon="@drawable/tab_icon_profile"
-            android:text="@string/menu_title_profile" />
+            android:text="@string/menu_title_settings" />
 
     </com.google.android.material.tabs.TabLayout>
 

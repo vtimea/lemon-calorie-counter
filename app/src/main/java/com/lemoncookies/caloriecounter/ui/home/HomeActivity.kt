@@ -15,7 +15,7 @@ import com.lemoncookies.caloriecounter.databinding.ActivityHomeBinding
 import com.lemoncookies.caloriecounter.ui.newItem.AddRecordActivity
 import com.lemoncookies.caloriecounter.ui.tabCalories.CaloriesFragment
 import com.lemoncookies.caloriecounter.ui.tabGraphs.GraphsFragment
-import com.lemoncookies.caloriecounter.ui.tabProfile.ProfileFragment
+import com.lemoncookies.caloriecounter.ui.tabSettings.ProfileFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -52,7 +52,7 @@ class HomeActivity : AppCompatActivity() {
                 }
                 else -> {
                     tab.icon = getDrawable(R.drawable.tab_icon_profile)
-                    tab.text = getString(R.string.menu_title_profile)
+                    tab.text = getString(R.string.menu_title_settings)
                 }
             }
         }.attach()

@@ -3,9 +3,11 @@
 
     <string name="menu_title_calories">Calories</string>
     <string name="menu_title_graphs">Graphs</string>
-    <string name="menu_title_profile">Profile</string>
+    <string name="menu_title_settings">Settings</string>
 
     <string name="kcal">%1$d kcal</string>
 
     <string name="date_format">%1$s %2$02d</string>
+    <string name="prefLimit">prefLimit</string>
+    <string name="prefLimitCheckboxText">Goal is minimum</string>
 </resources>
