@@ -3,8 +3,8 @@
     <PreferenceCategory app:title="Settings">
         <com.lemoncookies.caloriecounter.ui.tabSettings.EdittextCheckboxPreference
             app:icon="@drawable/ic_star_24px"
-            app:key="@string/prefLimit"
-            app:summary="The number of calories you want to eat"
-            app:title="Calorie goal" />
+            app:key="@string/prefGoal"
+            app:summary="@string/prefGoal_summary"
+            app:title="@string/prefGoal_title" />
     </PreferenceCategory>
 </PreferenceScreen>

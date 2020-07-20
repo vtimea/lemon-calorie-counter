@@ -1,13 +1,22 @@
 <resources>
+    <!--    App    -->
     <string name="app_name">Lemon Calorie Counter</string>
 
+    <!--    Bottom nav bar    -->
     <string name="menu_title_calories">Calories</string>
     <string name="menu_title_graphs">Graphs</string>
     <string name="menu_title_settings">Settings</string>
 
+    <!--    Home tab    -->
     <string name="kcal">%1$d kcal</string>
-
     <string name="date_format">%1$s %2$02d</string>
-    <string name="prefLimit">prefLimit</string>
+
+    <!--    Settings    -->
+    <string name="prefGoal">prefLimit</string>
     <string name="prefLimitCheckboxText">Goal is minimum</string>
+    <string name="prefGoal_summary">The number of calories you want to eat</string>
+    <string name="prefGoal_title">Calorie goal</string>
+
+    <!--    Non categorized    -->
+
 </resources>

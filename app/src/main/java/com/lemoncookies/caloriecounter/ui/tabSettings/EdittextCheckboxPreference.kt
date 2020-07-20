@@ -15,12 +15,10 @@ class EdittextCheckboxPreference : DialogPreference {
     companion object {
         val DEF_VALUE: Int = 2000
         val DEF_IS_MIN: Boolean = false
-        private val KEY_LIMIT = "limit"
-        private val KEY_ISMIN = "ismin"
+        val KEY_LIMIT = "prefGoal_limit"
+        val KEY_ISMIN = "prefGoal_ismin"
     }
 
-    var defaultLimit: Int? = DEF_VALUE
-    var defaultisMin: Boolean? = DEF_IS_MIN
     private var mValueView: View? = null
 
     constructor(context: Context?) : super(context)
@@ -29,7 +27,7 @@ class EdittextCheckboxPreference : DialogPreference {
 
     override fun onBindViewHolder(viewHolder: PreferenceViewHolder) {
         mValueView = createValueView(viewHolder.itemView)
-        showValue(getPersistedLimit())
+        showLimit(getPersistedLimit())
         super.onBindViewHolder(viewHolder)
     }
 
@@ -45,41 +43,37 @@ class EdittextCheckboxPreference : DialogPreference {
     }
 
     private fun getPersistedLimit(): Int? {
-        val key = key + KEY_LIMIT
-        return if (shouldPersist() && sharedPreferences.contains(key)) sharedPreferences.getInt(
-            key,
+        return if (shouldPersist() && sharedPreferences.contains(KEY_LIMIT)) sharedPreferences.getInt(
+            KEY_LIMIT,
             DEF_VALUE
         ) else DEF_VALUE
     }
 
     private fun getPersistedIsMin(): Boolean? {
-        val key = key + KEY_ISMIN
-        return if (shouldPersist() && sharedPreferences.contains(key)) sharedPreferences.getBoolean(
-            key,
+        return if (shouldPersist() && sharedPreferences.contains(KEY_ISMIN)) sharedPreferences.getBoolean(
+            KEY_ISMIN,
             DEF_IS_MIN
         ) else DEF_IS_MIN
     }
 
     private fun persistLimit(limit: Int) {
-        val key = key + KEY_LIMIT
-        sharedPreferences.edit().putInt(key, limit).apply()
+        sharedPreferences.edit().putInt(KEY_LIMIT, limit).apply()
     }
 
     private fun persistIsMin(isMin: Boolean) {
-        val key = key + KEY_ISMIN
-        sharedPreferences.edit().putBoolean(key, isMin).apply()
+        sharedPreferences.edit().putBoolean(KEY_ISMIN, isMin).apply()
     }
 
-    private fun showValue(value: Int?) {
+    private fun showLimit(value: Int?) {
         if (mValueView != null) {
             mValueView?.findViewById<TextView>(R.id.value)?.text = value.toString()
         }
     }
 
-    fun setValue(value: Int = DEF_VALUE, isMin: Boolean = DEF_IS_MIN) {
+    fun setValues(value: Int = DEF_VALUE, isMin: Boolean = DEF_IS_MIN) {
         persistLimit(value)
         persistIsMin(isMin)
-        showValue(value)
+        showLimit(value)
     }
 
     fun getLimit(): Int {

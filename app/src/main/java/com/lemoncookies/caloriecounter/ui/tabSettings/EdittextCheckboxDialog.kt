@@ -46,13 +46,11 @@ class EdittextCheckboxDialog(private val preference: EdittextCheckboxPreference?
         super.onStart()
         val dialog =
             dialog as AlertDialog?
-        if (preference?.defaultLimit != null && dialogLimit != null && dialog != null
+        if (preference != null && dialogLimit != null && dialog != null
         ) {
             dialog.getButton(DialogInterface.BUTTON_NEUTRAL)
                 ?.setOnClickListener {
-                    preference.defaultLimit?.let {
-                        dialogLimit?.setValue(it)
-                    }
+                    dialogLimit?.setValue(preference.getLimit())
                 }
         }
     }
@@ -66,7 +64,7 @@ class EdittextCheckboxDialog(private val preference: EdittextCheckboxPreference?
             } catch (e: NumberFormatException) {
             }
             if (preference?.callChangeListener(value) == true) {
-                preference.setValue(value, isMin)
+                preference.setValues(value, isMin)
             }
         }
     }
