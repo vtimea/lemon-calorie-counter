@@ -15,7 +15,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/default_margin">
+            android:layout_marginStart="@dimen/default_margin">
 
             <TextView
                 android:id="@+id/date"
@@ -25,14 +25,18 @@
                 android:layout_marginEnd="@dimen/margin_medium"
                 android:textSize="@dimen/text_size_big"
                 android:textStyle="bold"
+                app:autoSizeMaxTextSize="@dimen/text_size_big"
+                app:autoSizeMinTextSize="@dimen/text_size_medium"
                 tools:text="April, 13" />
 
             <TextView
+                android:id="@+id/day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/date"
+                android:layout_alignBaseline="@id/date"
                 android:layout_toEndOf="@id/date"
-                android:textSize="@dimen/text_size_medium"
+                app:autoSizeMaxTextSize="@dimen/text_size_medium"
+                app:autoSizeMinTextSize="@dimen/text_size_normal"
                 tools:text="Friday" />
 
         </RelativeLayout>

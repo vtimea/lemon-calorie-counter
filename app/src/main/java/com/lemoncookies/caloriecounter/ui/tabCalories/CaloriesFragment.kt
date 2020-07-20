@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.lemoncookies.caloriecounter.R
 import com.lemoncookies.caloriecounter.databinding.FragmentCaloriesBinding
 import com.lemoncookies.caloriecounter.ui.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_calories.view.*
 import org.joda.time.DateTime
 
 class CaloriesFragment : BaseFragment() {
@@ -33,6 +34,9 @@ class CaloriesFragment : BaseFragment() {
         })
         viewModel.calorieSum.observe(viewLifecycleOwner, Observer {
             binding.tvSum.text = getString(R.string.kcal, it)
+        })
+        viewModel.selectedDate.observe(viewLifecycleOwner, Observer {
+            setDateText(it)
         })
         return binding.root
     }
@@ -62,6 +66,12 @@ class CaloriesFragment : BaseFragment() {
                 onDatePicked(date)
             }
         }
+    }
+
+    private fun setDateText(date: DateTime) {
+        binding.toolbar.date.text =
+            getString(R.string.date_format, date.monthOfYear().asShortText, date.dayOfMonth)
+        binding.toolbar.day.text = date.dayOfWeek().asText
     }
 
     private fun onDatePicked(date: DateTime) {

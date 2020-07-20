@@ -13,10 +13,10 @@ import org.joda.time.DateTime
 class CaloriesViewModel @ViewModelInject constructor(application: Application) :
     AndroidViewModel(application) {
     private val db: LocalRepository = LocalRepository(application)
-    private var selectedDate: MutableLiveData<DateTime> = MutableLiveData(DateTime.now())
+    private var mSelectedDate: MutableLiveData<DateTime> = MutableLiveData(DateTime.now())
 
     val records: LiveData<List<CalorieRecord>> =
-        Transformations.switchMap(selectedDate) { date ->
+        Transformations.switchMap(mSelectedDate) { date ->
             db.calorieRepository.getByDate(date)
         }
 
@@ -28,8 +28,9 @@ class CaloriesViewModel @ViewModelInject constructor(application: Application) :
         sum
     }
 
+    val selectedDate: LiveData<DateTime> = mSelectedDate
 
     fun onDateSelected(date: DateTime) {
-        selectedDate.postValue(date)
+        mSelectedDate.postValue(date)
     }
 }
