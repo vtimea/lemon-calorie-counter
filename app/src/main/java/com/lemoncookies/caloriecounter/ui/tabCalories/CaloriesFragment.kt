@@ -16,6 +16,7 @@ import org.joda.time.DateTime
 
 class CaloriesFragment : BaseFragment() {
     override val LAYOUT = R.layout.fragment_calories
+    private val DATES_TO_SHOW = 6
     private val viewModel: CaloriesViewModel by viewModels()
     private lateinit var binding: FragmentCaloriesBinding
 
@@ -53,19 +54,23 @@ class CaloriesFragment : BaseFragment() {
         val rvDates = binding.rvDates
         rvDates.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        val dates = listOf<DateTime>(
-            DateTime.now().minusDays(5),
-            DateTime.now().minusDays(4),
-            DateTime.now().minusDays(3),
-            DateTime.now().minusDays(2),
-            DateTime.now().minusDays(1),
-            DateTime.now()
-        )
-        rvDates.adapter = object : DatesAdapter(dates, 1) {
+
+        val today = DateTime.now()
+        val dates: MutableList<DateTime> = mutableListOf()
+        for (i in DATES_TO_SHOW downTo 1) {
+            dates.add(today.minusDays(i))
+        }
+        dates.add(today)
+        for (i in 1..DATES_TO_SHOW) {
+            dates.add(today.plusDays(i))
+        }
+
+        rvDates.adapter = object : DatesAdapter(dates, DATES_TO_SHOW) {
             override fun onDateSelected(date: DateTime) {
                 onDatePicked(date)
             }
         }
+        rvDates.scrollToPosition(DATES_TO_SHOW)
     }
 
     private fun setDateText(date: DateTime) {
