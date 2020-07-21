@@ -9,16 +9,14 @@ import android.widget.TextView
 import androidx.preference.DialogPreference
 import androidx.preference.PreferenceViewHolder
 import com.lemoncookies.caloriecounter.R
+import com.lemoncookies.caloriecounter.data.prefs.PrefParams.DEF_CALORIE_LIMIT
+import com.lemoncookies.caloriecounter.data.prefs.PrefParams.DEF_IS_MIN
+import com.lemoncookies.caloriecounter.data.prefs.PrefsHelper
+import com.lemoncookies.caloriecounter.data.prefs.PrefsHelperImpl
 
 
 class EdittextCheckboxPreference : DialogPreference {
-    companion object {
-        val DEF_VALUE: Int = 2000
-        val DEF_IS_MIN: Boolean = false
-        val KEY_LIMIT = "prefGoal_limit"
-        val KEY_ISMIN = "prefGoal_ismin"
-    }
-
+    private val mPrefsHelper: PrefsHelper = PrefsHelperImpl(context)
     private var mValueView: View? = null
 
     constructor(context: Context?) : super(context)
@@ -43,25 +41,19 @@ class EdittextCheckboxPreference : DialogPreference {
     }
 
     private fun getPersistedLimit(): Int? {
-        return if (shouldPersist() && sharedPreferences.contains(KEY_LIMIT)) sharedPreferences.getInt(
-            KEY_LIMIT,
-            DEF_VALUE
-        ) else DEF_VALUE
+        return if (shouldPersist()) mPrefsHelper.getCalorieLimit() else DEF_CALORIE_LIMIT
     }
 
     private fun getPersistedIsMin(): Boolean? {
-        return if (shouldPersist() && sharedPreferences.contains(KEY_ISMIN)) sharedPreferences.getBoolean(
-            KEY_ISMIN,
-            DEF_IS_MIN
-        ) else DEF_IS_MIN
+        return if (shouldPersist()) mPrefsHelper.getIsMinimum() else DEF_IS_MIN
     }
 
     private fun persistLimit(limit: Int) {
-        sharedPreferences.edit().putInt(KEY_LIMIT, limit).apply()
+        mPrefsHelper.saveCalorieLimit(limit)
     }
 
     private fun persistIsMin(isMin: Boolean) {
-        sharedPreferences.edit().putBoolean(KEY_ISMIN, isMin).apply()
+        mPrefsHelper.saveIsMinimum(isMin)
     }
 
     private fun showLimit(value: Int?) {
@@ -70,14 +62,14 @@ class EdittextCheckboxPreference : DialogPreference {
         }
     }
 
-    fun setValues(value: Int = DEF_VALUE, isMin: Boolean = DEF_IS_MIN) {
+    fun setValues(value: Int = DEF_CALORIE_LIMIT, isMin: Boolean = DEF_IS_MIN) {
         persistLimit(value)
         persistIsMin(isMin)
         showLimit(value)
     }
 
     fun getLimit(): Int {
-        return getPersistedLimit() ?: DEF_VALUE
+        return getPersistedLimit() ?: DEF_CALORIE_LIMIT
     }
 
     fun getIsMin(): Boolean {

@@ -35,9 +35,15 @@ class CaloriesFragment : BaseFragment() {
         })
         viewModel.calorieSum.observe(viewLifecycleOwner, Observer {
             binding.tvSum.text = getString(R.string.kcal, it)
+            val currentProgress = binding.progress.progress
+            val diff = it - currentProgress
+            binding.progress.incrementProgressBy(diff)
         })
         viewModel.selectedDate.observe(viewLifecycleOwner, Observer {
             setDateText(it)
+        })
+        viewModel.calorieLimit.observe(viewLifecycleOwner, Observer {
+            binding.progress.max = it
         })
         return binding.root
     }

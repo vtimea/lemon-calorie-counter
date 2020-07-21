@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.preference.PreferenceDialogFragmentCompat
-import com.lemoncookies.caloriecounter.ui.tabSettings.EdittextCheckboxPreference.Companion.DEF_IS_MIN
-import com.lemoncookies.caloriecounter.ui.tabSettings.EdittextCheckboxPreference.Companion.DEF_VALUE
+import com.lemoncookies.caloriecounter.data.prefs.PrefParams.DEF_CALORIE_LIMIT
+import com.lemoncookies.caloriecounter.data.prefs.PrefParams.DEF_IS_MIN
 import com.lemoncookies.caloriecounter.views.DialogLimit
 
 
@@ -36,7 +36,7 @@ class EdittextCheckboxDialog(private val preference: EdittextCheckboxPreference?
 
     override fun onCreateDialogView(context: Context?): View {
         val dialogView = getContext()?.let { DialogLimit(it) }
-        dialogView?.setValue(preference?.getLimit() ?: DEF_VALUE)
+        dialogView?.setValue(preference?.getLimit() ?: DEF_CALORIE_LIMIT)
         dialogView?.setCheckbox(preference?.getIsMin() ?: DEF_IS_MIN)
         dialogLimit = dialogView
         return dialogLimit!!
@@ -56,7 +56,7 @@ class EdittextCheckboxDialog(private val preference: EdittextCheckboxPreference?
     }
 
     override fun onDialogClosed(positiveResult: Boolean) {
-        var value = DEF_VALUE
+        var value = DEF_CALORIE_LIMIT
         val isMin = dialogLimit?.getCheckboxState() ?: DEF_IS_MIN
         if (positiveResult) {
             try {

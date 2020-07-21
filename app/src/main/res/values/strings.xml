@@ -14,7 +14,7 @@
     <!--    Settings    -->
     <string name="prefGoal">prefLimit</string>
     <string name="prefLimitCheckboxText">Goal is minimum</string>
-    <string name="prefGoal_summary">The number of calories you want to eat</string>
+    <string name="prefGoal_summary">The number of calories you want to consume</string>
     <string name="prefGoal_title">Calorie goal</string>
 
     <!--    Non categorized    -->
