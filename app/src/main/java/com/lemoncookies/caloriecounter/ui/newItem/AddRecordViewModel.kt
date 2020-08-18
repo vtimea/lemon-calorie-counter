@@ -11,8 +11,13 @@ class AddRecordViewModel @ViewModelInject constructor(application: Application) 
     AndroidViewModel(application) {
     private val db: LocalRepository = LocalRepository(application)
 
-    fun saveRecord(name: String, value: Int) {
-        val record = CalorieRecord(name = name, calories = value, date = DateTime.now().millis)
+    fun saveRecord(name: String, value: Int, date: Long) {
+        val recordDate = if (date == 0L) {
+            DateTime.now().millis
+        } else {
+            date
+        }
+        val record = CalorieRecord(name = name, calories = value, date = recordDate)
         db.calorieRepository.addRecord(record)
     }
 }

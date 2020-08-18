@@ -9,6 +9,10 @@ class AddRecordActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddRecordBinding
     private val viewModel: AddRecordViewModel by viewModels()
 
+    companion object {
+        val KEY_SELECTED_DATE = "SEL_DATE"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddRecordBinding.inflate(layoutInflater)
@@ -21,7 +25,8 @@ class AddRecordActivity : AppCompatActivity() {
         binding.btnAdd.setOnClickListener {
             val name = binding.etName.text.toString()
             val value = binding.etValue.text.toString().toInt()
-            viewModel.saveRecord(name, value)
+            val date: Long = intent.getLongExtra(KEY_SELECTED_DATE, 0L)
+            viewModel.saveRecord(name, value, date)
             finish()
         }
     }

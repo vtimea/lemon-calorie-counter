@@ -13,6 +13,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.lemoncookies.caloriecounter.R
 import com.lemoncookies.caloriecounter.databinding.ActivityHomeBinding
 import com.lemoncookies.caloriecounter.ui.newItem.AddRecordActivity
+import com.lemoncookies.caloriecounter.ui.newItem.AddRecordActivity.Companion.KEY_SELECTED_DATE
 import com.lemoncookies.caloriecounter.ui.tabCalories.CaloriesFragment
 import com.lemoncookies.caloriecounter.ui.tabGraphs.GraphsFragment
 import com.lemoncookies.caloriecounter.ui.tabSettings.SettingsFragment
@@ -108,7 +109,10 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun navigateToAdd() {
+        val selectedDate =
+            ((binding.pager.adapter as FadingPagerAdapter).fragments[0] as CaloriesFragment).getSelectedDate()
         val intent = Intent(this, AddRecordActivity::class.java)
+        intent.putExtra(KEY_SELECTED_DATE, selectedDate?.millis)
         startActivity(intent)
     }
 }

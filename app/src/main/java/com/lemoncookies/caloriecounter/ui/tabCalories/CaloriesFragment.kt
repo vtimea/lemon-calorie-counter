@@ -116,6 +116,8 @@ class CaloriesFragment : BaseFragment() {
             binding.tvOver.setDefault()
         }
     }
+
+    fun getSelectedDate(): DateTime? = viewModel.selectedDate.value
 }
 
 @Suppress("DEPRECATION")
