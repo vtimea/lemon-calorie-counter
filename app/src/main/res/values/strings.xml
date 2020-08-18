@@ -8,7 +8,7 @@
     <string name="menu_title_settings">Settings</string>
 
     <!--    Home tab    -->
-    <string name="kcal">%1$d kcal</string>
+    <string name="kcal">%1$d / %2$d</string>
     <string name="date_format">%1$s %2$02d</string>
 
     <!--    Settings    -->
@@ -16,6 +16,8 @@
     <string name="prefLimitCheckboxText">Goal is minimum</string>
     <string name="prefGoal_summary">The number of calories you want to consume</string>
     <string name="prefGoal_title">Calorie goal</string>
+    <string name="kcal_left">%1$d left</string>
+    <string name="kcal_over">%1$d over</string>
 
     <!--    Non categorized    -->
 

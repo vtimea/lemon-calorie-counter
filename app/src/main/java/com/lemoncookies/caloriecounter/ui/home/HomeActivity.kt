@@ -37,8 +37,7 @@ class HomeActivity : AppCompatActivity() {
             page.alpha = 0f
             page.visibility = View.VISIBLE
             page.animate()
-                .alpha(1f).duration =
-                page.resources.getInteger(android.R.integer.config_shortAnimTime).toLong()
+                .alpha(1f)
         }
         TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
             when (position) {

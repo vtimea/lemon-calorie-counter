@@ -1,14 +1,17 @@
 package com.lemoncookies.caloriecounter.ui.tabCalories
 
+import android.graphics.Typeface
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lemoncookies.caloriecounter.R
+import com.lemoncookies.caloriecounter.data.local.entities.CalorieRecord
 import com.lemoncookies.caloriecounter.databinding.FragmentCaloriesBinding
 import com.lemoncookies.caloriecounter.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_calories.view.*
@@ -30,21 +33,22 @@ class CaloriesFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCaloriesBinding.inflate(inflater, container, false)
+        viewModel.selectedDate.observe(viewLifecycleOwner, Observer {
+            updateSelectedDate(it)
+        })
         viewModel.records.observe(viewLifecycleOwner, Observer {
-            binding.recyclerView.adapter = CalorieListAdapter(it)
+            updateRecords(it)
         })
         viewModel.calorieSum.observe(viewLifecycleOwner, Observer {
-            binding.tvSum.text = getString(R.string.kcal, it)
-            val currentProgress = binding.progress.progress
-            val diff = it - currentProgress
-            binding.progress.incrementProgressBy(diff)
-        })
-        viewModel.selectedDate.observe(viewLifecycleOwner, Observer {
-            setDateText(it)
+            updateCalorieSum(it)
         })
         viewModel.calorieLimit.observe(viewLifecycleOwner, Observer {
-            binding.progress.max = it
+            updateCalorieLimit(it)
         })
+        viewModel.calorieState.observe(viewLifecycleOwner, Observer {
+            updateCalorieState(getString(it.textRes, it.value), it.warning)
+        })
+        viewModel.isMinimum.observe(viewLifecycleOwner, Observer {})
         return binding.root
     }
 
@@ -79,14 +83,59 @@ class CaloriesFragment : BaseFragment() {
         rvDates.scrollToPosition(DATES_TO_SHOW)
     }
 
-    private fun setDateText(date: DateTime) {
+    private fun onDatePicked(date: DateTime) {
+        viewModel.onDateSelected(date)
+    }
+
+    private fun updateSelectedDate(date: DateTime) {
         binding.toolbar.date.text =
             getString(R.string.date_format, date.monthOfYear().asShortText, date.dayOfMonth)
         binding.toolbar.day.text = date.dayOfWeek().asText
     }
 
-    private fun onDatePicked(date: DateTime) {
-        viewModel.onDateSelected(date)
-        Toast.makeText(requireContext(), date.toString(), Toast.LENGTH_SHORT).show()
+    private fun updateRecords(records: List<CalorieRecord>) {
+        binding.recyclerView.adapter = CalorieListAdapter(records)
     }
+
+    private fun updateCalorieSum(sum: Int) {
+        binding.tvSum.text = getString(R.string.kcal, sum, viewModel.calorieLimit.value)
+        binding.progress.progress = sum
+    }
+
+    private fun updateCalorieLimit(limit: Int) {
+        val calorieSum = viewModel.calorieSum.value ?: 0
+        binding.progress.max = limit
+        binding.tvSum.text = getString(R.string.kcal, calorieSum, limit)
+    }
+
+    private fun updateCalorieState(text: String, warning: Boolean) {
+        binding.tvOver.text = text
+        if (warning) {
+            binding.tvOver.setWarning()
+        } else {
+            binding.tvOver.setDefault()
+        }
+    }
+}
+
+@Suppress("DEPRECATION")
+private fun TextView.setWarning() {
+    val warningColor: Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        resources.getColor(R.color.colorPrimary, null)
+    } else {
+        resources.getColor(R.color.colorPrimary)
+    }
+    this.setTextColor(warningColor)
+    this.setTypeface(null, Typeface.BOLD)
+}
+
+@Suppress("DEPRECATION")
+private fun TextView.setDefault() {
+    val defaultColor: Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        resources.getColor(R.color.textSecondary, null)
+    } else {
+        resources.getColor(R.color.textSecondary)
+    }
+    this.setTextColor(defaultColor)
+    this.setTypeface(null, Typeface.NORMAL)
 }
